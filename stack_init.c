@@ -44,9 +44,10 @@ void  append_bottom(t_stack *stack, t_node *node)
 {
     if(!stack->Top)
     {
+        stack->size=0;
         stack->Bottom=node;
         stack->Top=node;
-        stack->size=1;
+        stack->size++;
         node->next=NULL;
         node->prev=NULL;
 
@@ -64,14 +65,22 @@ void  append_bottom(t_stack *stack, t_node *node)
 
 }
 
-void init_stack_a(char *arr, int size)
+void init_stack_a(t_stack *stack ,int *arr, int size)
 {
     int i=0;
-    t_stack *stack;
+    
     while(i<size)
     {
         t_node *node = new_node(arr[i]);
 
+        if(!node)
+        {
+            write(2,"Error\n",6);
+        }
+        if(arr=NULL || size <=0)
+        {
+            return ;
+        }
         append_bottom(stack,node);
         i++;
     }
@@ -79,4 +88,4 @@ void init_stack_a(char *arr, int size)
 void list_node()
 {
 
-}
+}   
