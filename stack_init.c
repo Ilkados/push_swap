@@ -109,9 +109,4 @@ int init_stack_a(t_stack *stack, int *arr, int size)
     }
     return 1;
 }
-
-void list_node()
-{
-    
-
-}   
+ 
