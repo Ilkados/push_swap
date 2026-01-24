@@ -75,3 +75,14 @@ int     push_stack(t_stack *from, t_stack *to)  // pa/pb base
     to->size++;
     return 1;
 } 
+
+
+int rotate_stack(t_stack *s)
+{
+    if(s==NULL || s->size<2 || s->Top==NULL || s->Top->next==NULL)
+        return 0;
+
+    t_node *First = s->Top;
+
+    t_node Second = fyd
+}
