@@ -2,24 +2,6 @@
 #include<stdio.h>
 #include<string.h>
 
-
-typedef struct s_node
-{
-    int             value;
-    struct  s_node  *next;
-    struct  s_node  *prev;
-}   t_node;
-
-
-typedef  struct s_stack
-{
-
-    t_node  *Top;
-    t_node  *Bottom;
-    int size;
-}   t_stack;
-
-
 #include <stdlib.h>
 
 void free_stack(t_stack *stack)
