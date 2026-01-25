@@ -31,7 +31,7 @@ typedef struct s_stack
 }   t_stack;
 
 /* =========================
-   Parsing / validation
+   Parsing / validation     
    ========================= 
 
 int     valid_str(const char *token);
