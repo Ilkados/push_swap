@@ -63,8 +63,6 @@ int count_tokens(char **token)
     return i;
 }
 
-
-
 int duplicate_esist(int *arr,int size)
 {
 
@@ -118,7 +116,7 @@ int *valid_tokens(char **tokens,int *Size)
 
 int * validate_and_convert( char **tokens,int *size)
 {
-    int *arr=valid_tokens(tokens,size);
+    int *arr=valid_tokens(tokens,*size);
 
     if(arr==NULL || duplicate_esist(arr,*size)==1 )
     {

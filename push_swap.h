@@ -4,6 +4,33 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include<stdio.h>
+
+
+/* =========================
+ Error.
+   ========================= */
+   void Error();
+
+
+/* =========================
+ parsing 
+   ========================= */
+
+ void free_tokens(char **tokens);
+
+
+/* =========================
+ parsing 
+   ========================= */
+char **tokenize_argv(int argc,char **argv );
+
+/* =========================
+  Read input:
+   ========================= */
+int * validate_and_convert( char **tokens,int *size);
+
+
 
 /* =========================
    Data structures
@@ -36,7 +63,7 @@ typedef struct s_stack
 
 int     valid_str(const char *token);
 int     ft_atoi_safe(const char *token, int *out);
-
+p
 int     count_tokens(char **tokens);
 int     duplicate_exist(int *arr, int size);
 
@@ -60,5 +87,5 @@ int     swap_stack(t_stack *s);                  /* sa/sb base
 int     push_stack(t_stack *from, t_stack *to);  /* pa/pb base 
 int     rotate_stack(t_stack *s);                /* ra/rb base 
 int     rev_rotate_stack(t_stack *s);            /* rra/rrb base 
-
-#endif*/
+*/
+#endif

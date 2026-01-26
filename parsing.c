@@ -2,10 +2,8 @@
 #include<unistd.h>
 #include<stdlib.h>
 #include <stdio.h>
-void error()
-{
-    write(2,"Error\n",6);
-}
+
+#include"push_swap.h"
 
 int white_space(char c)
 {
@@ -57,19 +55,6 @@ char *substr_range(const char *s, int start , int end)
     }
     out[i]='\0';
     return out;
-}
-static void free_tokens(char **tokens)
-{
-    int i = 0;
-
-    if (!tokens)
-        return;
-    while (tokens[i])
-    {
-        free(tokens[i]);
-        i++;
-    }
-    free(tokens);
 }
 char **split_whitespace(char *s)
 {
@@ -125,7 +110,7 @@ int total_tokens(char **argv, int argc)
 
     return count;
 }
-char **tokenize_argv(char **argv, int argc)
+char **tokenize_argv(int argc ,char **argv)
 {
     int total = total_tokens(argv, argc);
      char **array=(char **)malloc((total+1)*sizeof(char*));
@@ -164,30 +149,3 @@ char **tokenize_argv(char **argv, int argc)
      return array;
      
 }
-
-int main(int argc, char **argv)
-{
-    char **array=tokenize_argv(argv, argc);
-    
-    if(array==NULL )
-    {
-        error();
-    }
-    //if you have argc > 1 but htis arg contain nothing 
-    if(argc > 1 && array[0]==NULL)
-    {
-        error();
-    }
-
-
-    int  i=0;
-    
-    while(array[i])
-    {
-       printf("tokens[%d] : %s\n",i,array[i]);
-       i++;
-    }
-    free_tokens(array);
-    return 1;
-}
-
