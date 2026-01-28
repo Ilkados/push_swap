@@ -1,6 +1,6 @@
 #include"push_swap.h"
 
-void	sort_stack(t_stack *A, t_stack *B)
+void	sort_stack(t_stack *A, t_stack *B, int argc, char **argv)
 {
 	int size;
     char **tokens= tokenize_argv(argc,argv);
@@ -25,25 +25,25 @@ void	sort_stack(t_stack *A, t_stack *B)
         return 1;
     }
  A->Top = NULL; A->Bottom = NULL; A->size = 0;
-  B->Top = NULL; B->Bottom = NULL; B->size = 0;
+ B->Top = NULL; B->Bottom = NULL; B->size = 0;
 
 init_stack_a(&A, arr, size);
 indexing_stack(&A);
 set_positions(&A);
 	(void)B; /* unused for now */
 
-	if (!a || a->size < 2)
+	if (!A || A->size < 2)
 		return ;
-	if (is_sorted(a))
+	if (is_sorted(A))
 		return ;
 
-	if (a->size == 2)
+	if (A->size == 2)
 	{
-		if (a->Top->value > a->Top->next->value)
-			sa(a);
+		if (A->Top->value > A->Top->next->value)
+			sa(A);
 	}
-	else if (a->size == 3)
-		tiny_sort_3(a);
+	else if (A->size == 3)
+		tiny_sort_3(A);
 	else
 	{
 		/* later: indexing + Turk */
