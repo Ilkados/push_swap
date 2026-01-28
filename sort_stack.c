@@ -1,8 +1,36 @@
 #include"push_swap.h"
 
-void	sort_stack(t_stack *a, t_stack *b)
+void	sort_stack(t_stack *A, t_stack *B)
 {
-	(void)b; /* unused for now */
+	int size;
+    char **tokens= tokenize_argv(argc,argv);
+    int i=0;
+    if(!tokens)
+    {
+        return (Error(),1);
+    }
+
+    if (argc > 1 && tokens[0] == NULL)
+    {
+        free_tokens(tokens);
+        return (Error(), 1);
+    }
+    int *arr=  validate_and_convert( tokens, &size);
+
+    if(arr==NULL)
+    {
+        Error();
+        free_tokens(tokens);
+        free(arr);
+        return 1;
+    }
+ A->Top = NULL; A->Bottom = NULL; A->size = 0;
+  B->Top = NULL; B->Bottom = NULL; B->size = 0;
+
+init_stack_a(&A, arr, size);
+indexing_stack(&A);
+set_positions(&A);
+	(void)B; /* unused for now */
 
 	if (!a || a->size < 2)
 		return ;
