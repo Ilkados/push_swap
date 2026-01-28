@@ -8,33 +8,6 @@
 
 
 /* =========================
- Error.
-   ========================= */
-   void Error();
-
-
-/* =========================
- parsing 
-   ========================= */
- void free_tokens(char **tokens);
-
-
-/* =========================
- parsing 
-   ========================= */
-char **tokenize_argv(int argc,char **argv );
-
-
-/* =========================
-  Read input:
-   ========================= */
-int * validate_and_convert( char **tokens,int *size);
-
-
-
-
-
-/* =========================
    Data structures
    ========================= */
 
@@ -60,33 +33,41 @@ typedef struct s_stack
 }   t_stack;
 
 
+/* =========================
+ Error.
+   ========================= */
+   void Error();
+
+
+/* =========================
+ free
+   ========================= */
+ void free_tokens(char **tokens);
+ void	free_stack(t_stack *s);
+
+/* =========================
+ parsing 
+   ========================= */
+char **tokenize_argv(int argc,char **argv );
+
+
+/* =========================
+  Read input:
+   ========================= */
+int * validate_and_convert( char **tokens,int *size);
+
+
+
+
+
+
+
 
 /* =========================
   Build the stack
    ========================= */
 int init_stack_a(t_stack *stack, int *arr, int size);
 
-/* =========================
-   Parsing / validation     
-   ========================= 
-
-int     valid_str(const char *token);
-int     ft_atoi_safe(const char *token, int *out);
-p
-int     count_tokens(char **tokens);
-int     duplicate_exist(int *arr, int size);
-
-int     *valid_tokens(char **tokens, int *size_out);
-int     *validate_and_convert(char **tokens, int *size_out);
-=========================
-   Stack building
-   ========================= 
-
-void    init_stack(t_stack *s);
-t_node  *new_node(int value);
-void    append_bottom(t_stack *stack, t_node *node);
-void    free_stack(t_stack *stack);
-int     init_stack_a(t_stack *stack, int *arr, int size);
 
 /* =========================
    Core operations (no printing)
@@ -96,8 +77,6 @@ int     swap_stack(t_stack *s);
 int     push_stack(t_stack *from, t_stack *to);  
 int     rotate_stack(t_stack *s);                
 int     rev_rotate_stack(t_stack *s);   
-
-
 
 /* =========================
    Operation Wrapper for A
@@ -117,4 +96,21 @@ void	sb(t_stack *b);
 void	rb(t_stack *b);
 void	rrb(t_stack *b);
 void	pb(t_stack *a, t_stack *b);
+
+
+/* =========================
+  indexing stack
+   ========================= 
+*/
+void indexing_stack(t_stack *A);
+
+
+/* =========================
+   set_positions.
+   ========================= 
+*/
+void set_positions(t_stack *A);
+
+
+
 #endif
