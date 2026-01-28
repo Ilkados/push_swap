@@ -16,7 +16,6 @@
 /* =========================
  parsing 
    ========================= */
-
  void free_tokens(char **tokens);
 
 
@@ -25,10 +24,13 @@
    ========================= */
 char **tokenize_argv(int argc,char **argv );
 
+
 /* =========================
   Read input:
    ========================= */
 int * validate_and_convert( char **tokens,int *size);
+
+
 
 
 
@@ -57,6 +59,13 @@ typedef struct s_stack
     int     size;
 }   t_stack;
 
+
+
+/* =========================
+  Build the stack
+   ========================= */
+int init_stack_a(t_stack *stack, int *arr, int size);
+
 /* =========================
    Parsing / validation     
    ========================= 
@@ -82,10 +91,30 @@ int     init_stack_a(t_stack *stack, int *arr, int size);
 /* =========================
    Core operations (no printing)
    ========================= 
-
-int     swap_stack(t_stack *s);                  /* sa/sb base 
-int     push_stack(t_stack *from, t_stack *to);  /* pa/pb base 
-int     rotate_stack(t_stack *s);                /* ra/rb base 
-int     rev_rotate_stack(t_stack *s);            /* rra/rrb base 
 */
+int     swap_stack(t_stack *s);                  
+int     push_stack(t_stack *from, t_stack *to);  
+int     rotate_stack(t_stack *s);                
+int     rev_rotate_stack(t_stack *s);   
+
+
+
+/* =========================
+   Operation Wrapper for A
+   ========================= 
+*/
+void	sa(t_stack *a);
+void	ra(t_stack *a);
+void	rra(t_stack *a);
+void	pa(t_stack *b, t_stack *a);
+
+
+/* =========================
+   Operation Wrapper for B
+   ========================= 
+*/
+void	sb(t_stack *b);
+void	rb(t_stack *b);
+void	rrb(t_stack *b);
+void	pb(t_stack *a, t_stack *b);
 #endif

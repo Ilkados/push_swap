@@ -1,5 +1,4 @@
-#include<stdio.h>
-#include<unistd.h>
+#include"push_swap.h"
 int valid_str(const char *token)
 {
     int i = 0;
@@ -104,7 +103,6 @@ int *valid_tokens(char **tokens,int *Size)
         if (!valid_str(tokens[i]) || !ft_atoi_safe(tokens[i], &value))
         {
             free(arr);
-            write(2,"Error\n",6);
             return NULL;
         }
         arr[i] = value;
@@ -116,15 +114,13 @@ int *valid_tokens(char **tokens,int *Size)
 
 int * validate_and_convert( char **tokens,int *size)
 {
-    int *arr=valid_tokens(tokens,*size);
+    int *arr=valid_tokens(tokens,size);
 
     if(arr==NULL || duplicate_esist(arr,*size)==1 )
     {
-        write(2,"Error\n",6);
         free(arr);
         return NULL;
     }
-    
     return arr;
     
 }
