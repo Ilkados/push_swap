@@ -1,5 +1,4 @@
 #include "push_swap.h"
-
 void set_positions(t_stack *A)
 {
     int i=0;
