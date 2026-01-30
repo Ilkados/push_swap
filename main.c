@@ -54,11 +54,10 @@ A.Top = NULL; A.Bottom = NULL; A.size = 0;
 B.Top = NULL; B.Bottom = NULL; B.size = 0;
 
 init_stack_a(&A, arr, size);
-indexing_stack(&A);
-set_positions(&A);
-free_stack(&A);
-free_stack(&B);
+
+
 free(arr);
+if(!is)
    // free_tokens(tokens);
 
     //building stack B

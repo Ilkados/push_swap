@@ -16,14 +16,3 @@ int is_sorted(t_stack *A)
     }
     return 1;
 }
-
-void sort_stack(t_stack *A, t_stack *B)
-{
-    if(is_sorted(&A))
-    {
-       return;
-    }
-    else
-    {}
-
-}
