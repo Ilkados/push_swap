@@ -111,6 +111,12 @@ void indexing_stack(t_stack *A);
 */
 void set_positions(t_stack *A);
 
+/* =========================
+  Turklogic.
+   ========================= 
+*/
+
+void Turk_sort(t_stack *A , t_stack *B);
 
 
 #endif
