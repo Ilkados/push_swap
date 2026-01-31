@@ -65,7 +65,8 @@ char **split_whitespace(char *s)
     int size=count_words(s);
     char **array=(char **)malloc((size+1)*sizeof(char*));
 
-    if(!array)
+    if(!
+        array)
     {
         return NULL;
     }

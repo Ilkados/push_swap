@@ -97,6 +97,17 @@ void	rb(t_stack *b);
 void	rrb(t_stack *b);
 void	pb(t_stack *a, t_stack *b);
 
+/* =========================
+   Operation Wrapper both
+   ========================= 
+*/
+ void rr(t_stack *A, t_stack *B);
+ void rrr(t_stack *A, t_stack *B);
+
+
+ void rotate_both(t_stack *A, t_stack *B, int *ca, int *cb);
+ void	rotate_a(t_stack *A, int ca);
+ void	rotate_b(t_stack *B, int cb);
 
 /* =========================
   indexing stack
@@ -121,7 +132,15 @@ int is_sorted(t_stack *A);
 
 
 /* =========================
-  Turklogic.
+  utils 
+   ========================= 
+*/
+
+void    move_best_to_top(t_stack *A, t_stack *B, t_node *best);
+void    final_rotate_min_to_top(t_stack *A);
+
+/* =========================
+  Turk logic.
    ========================= 
 */
 void    tiny_sort_3(t_stack *A);

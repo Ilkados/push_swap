@@ -45,7 +45,7 @@ B.Top = NULL; B.Bottom = NULL; B.size = 0;
 
     init_stack_a(&A, arr, size);
      free(arr);
-	 sort_stack(&A, &B);
+	sort_stack(&A, &B);
 
 
  free_stack(&A);

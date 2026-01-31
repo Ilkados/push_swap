@@ -1,68 +1,29 @@
 #include"push_swap.h"
 
- void rr(t_stack *A, t_stack *B,int cr)
+ 
+ void rr(t_stack *A, t_stack *B)
  {
-	while (cr > 0)
+	if(!A || !B || A->size < 2 || B->size < 2)
 	{
-		ra(A);
-		rb(B);
-		cr--;
+		return ;
 	}
+		rotate_stack(A);
+		rotate_stack(B);
+		write(1,"rr\n",3);
  }
 
 
 
- void rrr(t_stack *A, t_stack *B,int crrr)
+ void rrr(t_stack *A, t_stack *B)
  {
-	while (crr > 0)
+	if(!A || !B || A->size < 2 || B->size < 2)
 	{
-		ra(A);
-		rb(B);
-		crrr--;
+		return ;
 	}
+		rev_rotate_stack(A);
+		rev_rotate_stack(B);
+		write(1,"rrr\n",4);
+
  }
- void rotate_both(t_stack *A, t_stack *B, int *ca, int *cb)
-{
-    while(*ca >0 && *cb >0)
-    {
-        rr(A, B);
-		(*ca)--;
-		(*cb)--;
 
-    }
-    while (*ca < 0 && *cb < 0)
-	{
-		rrr(A, B);
-		(*ca)++;
-		(*cb)++;
-	}
-}
-
- void	rotate_a(t_stack *A, int ca)
-{
-	while (ca > 0)
-	{
-		ra(A);
-		ca--;
-	}
-	while (ca < 0)
-	{
-		rra(A);
-		ca++;
-	}
-}
-
- void	rotate_b(t_stack *B, int cb)
-{
-	while (cb > 0)
-	{
-		rb(B);
-		cb--;
-	}
-	while (cb < 0)
-	{
-		rrb(B);
-		cb++;
-	}
-}
 

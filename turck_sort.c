@@ -103,7 +103,7 @@ void set_costs(t_stack *A, t_stack *B)
         else
          b->cost_a=0;
     
-         b=b->next;
+      b=b->next;
     }
 
 }
@@ -145,67 +145,6 @@ t_node	*find_cheapest(t_stack *B)
 }
 
 
-void	move_best_to_top(t_stack *A, t_stack *B, t_node *best)
-{
-	int	ca;
-	int	cb;
-
-	if (!A || !B || !best)
-		return ;
-
-	ca = best->cost_a;
-	cb = best->cost_b;
-
-	rotate_both(A, B, &ca, &cb);
-	rotate_a(A, ca);
-	rotate_b(B, cb);
-}
-static t_node *find_index0(t_stack *A)
-{
-	t_node *cur = A->Top;
-	while (cur)
-	{
-		if (cur->index == 0)
-			return cur;
-		cur = cur->next;
-	}
-	return NULL;
-}
-
-
-void final_rotate_min_to_top(t_stack *A)
-{
-	t_node *min;
-
-    int p =0;
-	if (!A || A->size < 2)
-		return;
-
-	set_positions(A);
-	min = find_index0(A);
-	if (!min)
-		return;
-
-         p=min->pos;
-	if (p<= A->size / 2)
-	{
-       
-		while (p > 0)
-		{
-			ra(A);
-			p--;
-		}
-	}
-	else
-	{
-        p=(A->size - min->pos);
-		while (p > 0)
-		{
-			rra(A);
-            p--;
-		}
-	}
-}
 
 void Turk_sort(t_stack *A , t_stack *B)
 {
