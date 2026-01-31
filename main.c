@@ -1,16 +1,6 @@
 
 #include"push_swap.h"
 
-void print_node_index(t_stack *s)
-{
-    t_node *cur = s->Top;
-
-    while(cur !=NULL)
-    {
-        printf("index  of value %d is  : %d\n", cur->value, cur->pos);
-        cur=cur->next;
-    }
-}
 int main(int argc, char **argv)
 {
 
@@ -19,7 +9,7 @@ int main(int argc, char **argv)
 
     int size;
     char **tokens= tokenize_argv(argc,argv);
-    int i=0;
+   
     if(!tokens)
     {
         return (Error(),1);
@@ -53,13 +43,12 @@ int main(int argc, char **argv)
 A.Top = NULL; A.Bottom = NULL; A.size = 0;
 B.Top = NULL; B.Bottom = NULL; B.size = 0;
 
-init_stack_a(&A, arr, size);
+    init_stack_a(&A, arr, size);
+     free(arr);
+	 sort_stack(&A, &B);
 
 
-free(arr);
-if(!is)
-   // free_tokens(tokens);
-
-    //building stack B
+ free_stack(&A);
+ free_stack(&B);
     return 0;
 }   

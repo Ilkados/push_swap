@@ -3,7 +3,9 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c parsing.c validation.c stack.c ops.c indexing.c
+SRCS = main.c Error.c free.c indexing.c Is_sorted.c op_wrappers_a.c op_wrappers_b.c op_wrappers_both.c \
+   operation.c parsing.c Set_positions.c sort_stack.c  stack_init.c tiny_sort_3.c \
+   turck_sort.c valid_tokens.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -66,7 +66,9 @@ char **split_whitespace(char *s)
     char **array=(char **)malloc((size+1)*sizeof(char*));
 
     if(!array)
-     return NULL;
+    {
+        return NULL;
+    }
     
      while(s && s[i])
      {

@@ -1,4 +1,5 @@
 #include"push_swap.h"
+
 void	sa(t_stack *a)
 {
 	swap_stack(a);

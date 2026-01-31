@@ -35,7 +35,10 @@ void	set_targets(t_stack *A, t_stack *B)
     int    best_index;
 
     if(!A || !B || !A->Top)
-     return ;
+    {
+        return ;
+    }
+     
 
      minA= min_index(A);
      b=B->Top;
@@ -68,10 +71,16 @@ void	set_targets(t_stack *A, t_stack *B)
 static int calc_cost(int pos, int size)
 {
     if(size<=1)
-     return 0;
+    {
+        return 0;
+    }
+     
 
      if(pos <=size/2)
-      return pos;
+    {
+        return pos;
+    }
+      
 
  return  (-(size-pos));
 }
@@ -136,50 +145,6 @@ t_node	*find_cheapest(t_stack *B)
 }
 
 
- void rotate_both(t_stack *A, t_stack *B, int *ca, int *cb)
-{
-    while(*ca >0 && *cb >0)
-    {
-        rr(A, B);
-		(*ca)--;
-		(*cb)--;
-
-    }
-    while (*ca < 0 && *cb < 0)
-	{
-		rrr(A, B);
-		(*ca)++;
-		(*cb)++;
-	}
-}
-
- void	rotate_a(t_stack *A, int ca)
-{
-	while (ca > 0)
-	{
-		ra(A);
-		ca--;
-	}
-	while (ca < 0)
-	{
-		rra(A);
-		ca++;
-	}
-}
-
- void	rotate_b(t_stack *B, int cb)
-{
-	while (cb > 0)
-	{
-		rb(B);
-		cb--;
-	}
-	while (cb < 0)
-	{
-		rrb(B);
-		cb++;
-	}
-}
 void	move_best_to_top(t_stack *A, t_stack *B, t_node *best)
 {
 	int	ca;
@@ -207,10 +172,12 @@ static t_node *find_index0(t_stack *A)
 	return NULL;
 }
 
- void	final_rotate_min_to_top(t_stack *A)
+
+void final_rotate_min_to_top(t_stack *A)
 {
 	t_node *min;
 
+    int p =0;
 	if (!A || A->size < 2)
 		return;
 
@@ -219,22 +186,23 @@ static t_node *find_index0(t_stack *A)
 	if (!min)
 		return;
 
-	if (min->pos <= A->size / 2)
+         p=min->pos;
+	if (p<= A->size / 2)
 	{
-		while (min->pos > 0)
+       
+		while (p > 0)
 		{
 			ra(A);
-			set_positions(A);
-			min = find_index0(A);
+			p--;
 		}
 	}
 	else
 	{
-		while (min->pos > 0)
+        p=(A->size - min->pos);
+		while (p > 0)
 		{
 			rra(A);
-			set_positions(A);
-			min = find_index0(A);
+            p--;
 		}
 	}
 }
@@ -253,17 +221,15 @@ void Turk_sort(t_stack *A , t_stack *B)
 
     while(B->size)
     {
+      set_positions(A);
+      set_positions(B);
+      set_targets(A,B);
+      set_costs(A,B);
 
-    set_positions(A);
-    set_positions(B);
-    // we have to find in A the node with smallest index that is bigger than b.index
-    set_targets(A,B);
-    set_costs(A,B);
-
-    t_node  *Best = find_cheapest(B);
-    move_best_to_top(A,B,Best);
-    pa(B,A);
-
+      t_node  *Best = find_cheapest(B);
+      move_best_to_top(A,B,Best);
+      pa(B,A);
+  
     }
     final_rotate_min_to_top(A);
    
