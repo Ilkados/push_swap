@@ -57,12 +57,11 @@ char	**tokenize_argv(int argc, char **argv)
 	{
 		temp = split(argv[i]);
 		if (!temp)
-        {
-            free_tokens(array);
-            return (NULL);
-        }
-			
-		 copy_tokens(array, temp, &k);
+		{
+			free_tokens(array);
+			return (NULL);
+		}
+		copy_tokens(array, temp, &k);
 		free(temp);
 		i++;
 	}

@@ -1,94 +1,91 @@
-#include"push_swap.h"
-#include<stdio.h>
-#include<string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/01 17:26:59 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/01 17:27:02 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-void free_stack(t_stack *stack)
+void	free_stack(t_stack *stack)
 {
-    t_node *cur;
-    t_node *next;
+	t_node	*cur;
+	t_node	*next;
 
-    if (!stack)
-        return;
-
-    cur = stack->Top;          /* if your fields are Top/Bottom, use stack->Top */
-    while (cur)
-    {
-        next = cur->next;
-        free(cur);
-        cur = next;
-    }
-    stack->Top = NULL;
-    stack->Bottom = NULL;
-    stack->size = 0;
+	if (!stack)
+		return ;
+	cur = stack->Top;
+	while (cur)
+	{
+		next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	stack->Top = NULL;
+	stack->Bottom = NULL;
+	stack->size = 0;
 }
 
-
-// here we have to create new_node(int value)
-
-t_node *new_node(int Value)
+t_node	*new_node(int Value)
 {
-    t_node *node=malloc(sizeof(t_node));
-    
-    if(!node)
-    {
-        return NULL;
-    }
-    node->value=Value;
-    node->next=NULL;
-    node->prev=NULL;
+	t_node	*node;
 
-    return node;
+	node = malloc(sizeof(t_node));
+	if (!node)
+		return (NULL);
+	node->value = Value;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
 }
 
-
-// here we have to connect that node into stack:
-
-void  append_bottom(t_stack *stack, t_node *node)
+void	append_bottom(t_stack *stack, t_node *node)
 {
-    if(!stack->Top)
-    {
-        stack->size=0;
-        stack->Bottom=node;
-        stack->Top=node;
-        stack->size++;
-        node->next=NULL;
-        node->prev=NULL;
+	t_node	*old_botttom;
 
-    }
-    else
-    {
-        t_node *old_botttom;
-         old_botttom = stack->Bottom;
-        node->prev=old_botttom;
-         old_botttom->next=node;
-         node->next=NULL;
-         stack->Bottom=node;
-         stack->size++;
-    }
-
+	if (!stack->Top)
+	{
+		stack->size = 0;
+		stack->Bottom = node;
+		stack->Top = node;
+		stack->size++;
+		node->next = NULL;
+		node->prev = NULL;
+	}
+	else
+	{
+		old_botttom = stack->Bottom;
+		node->prev = old_botttom;
+		old_botttom->next = node;
+		node->next = NULL;
+		stack->Bottom = node;
+		stack->size++;
+	}
 }
 
-int init_stack_a(t_stack *stack, int *arr, int size)
+int	init_stack_a(t_stack *stack, int *arr, int size)
 {
-    int i;
+	int		i;
+	t_node	*node;
 
-    if (!stack || !arr || size <= 0)
-        return 0;
-
-    i = 0;
-    while (i < size)
-    {
-        t_node *node = new_node(arr[i]);
-        if (!node)
-        {
-            free_stack(stack); /* you must have this function */
-            return 0;
-        }
-        append_bottom(stack, node);
-        i++;
-    }
-    return 1;
+	if (!stack || !arr || size <= 0)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		node = new_node(arr[i]);
+		if (!node)
+		{
+			free_stack(stack);
+			return (0);
+		}
+		append_bottom(stack, node);
+		i++;
+	}
+	return (1);
 }
- 

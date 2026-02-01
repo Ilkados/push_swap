@@ -58,6 +58,8 @@ char	**split(char *s);
 /* =========================
  parsing 
    ========================= */
+int	duplicate_esist(int *arr, int size);
+int	*valid_tokens(char **tokens, int *Size);
 char **tokenize_argv(int argc,char **argv );
 
 
@@ -86,7 +88,19 @@ int init_stack_a(t_stack *stack, int *arr, int size);
 int     swap_stack(t_stack *s);                  
 int     push_stack(t_stack *from, t_stack *to);  
 int     rotate_stack(t_stack *s);                
-int     rev_rotate_stack(t_stack *s);   
+int     rev_rotate_stack(t_stack *s);
+
+/* =========================
+   Validate operations
+   ========================= 
+*/
+int swap(t_node *fir, t_node *sec, t_node *thir);
+int swap_and_rotate_rev(t_node *fir, t_node *sec, t_node *thir);
+int rotate(t_node *fir, t_node *sec, t_node *thir);
+int swap_and_rotate(t_node *fir, t_node *sec, t_node *thir);
+int reverse_rotate(t_node *fir, t_node *sec, t_node *thir);
+
+
 
 /* =========================
    Operation Wrapper for A

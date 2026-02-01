@@ -26,7 +26,7 @@ t_node *min_index(t_stack *A)
     
 }
 
-void	set_targets(t_stack *A, t_stack *B)
+void    set_targets(t_stack *A, t_stack *B)
 {
     t_node *a;
     t_node *b;
@@ -35,38 +35,29 @@ void	set_targets(t_stack *A, t_stack *B)
     int    best_index;
 
     if(!A || !B || !A->Top)
-    {
         return ;
-    }
-     
-
-     minA= min_index(A);
-     b=B->Top;
-
-     while(b)
-     {
+    minA = min_index(A);
+    b=B->Top;
+    while (b)
+    {
         best = NULL;
-        best_index = INT_MAX;
-        
+        best_index = INT_MAX;  
         a = A->Top;
-        while(a)
+        while (a)
         {
-            if(a->index > b->index && a->index < best_index)
+            if (a->index > b->index && a->index < best_index)
             {
                 best_index = a->index;
-                best= a;
+                best = a;
             }
-
-            a=a->next ;
+            a = a->next ;
         }
-        if(best)
+        if (best)
             b->target= best;
         else
-         b->target= minA;
-        
-      b = b->next;
-
-     }
+            b->target= minA;
+        b = b->next;
+    }
 }
 static int calc_cost(int pos, int size)
 {

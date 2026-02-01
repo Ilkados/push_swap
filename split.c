@@ -23,6 +23,7 @@ char	**split_fail(char **array)
 	free(array);
 	return (NULL);
 }
+
 char	**split(char *s)
 {
 	char	**array;

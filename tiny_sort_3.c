@@ -1,41 +1,42 @@
-#include"push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tiny_sort_3.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.Firstr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/01 18:09:13 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/01 18:09:16 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
 void	tiny_sort_3(t_stack *A)
 {
-	t_node	*F;
-	t_node	*S;
-	t_node	*T;
+	t_node	*first;
+	t_node	*second;
+	t_node	*third;
 
-	F = A->Top;
-	S = F->next;
-	T = A->Bottom;
-
-	/* already sorted */
-	if (F->value < S->value && S->value < T->value)
+	first = A->Top;
+	second = first->next;
+	third = A->Bottom;
+	if (first->value < second->value && second->value < third->value)
 		return ;
-
-	/* 2 1 3 */
-	else if (F->value > S->value && S->value < T->value && F->value < T->value)
+	else if (swap(first, second, third))
 		sa(A);
-
-	/* 3 2 1 */
-	else if (F->value > S->value && S->value > T->value)
+	else if (fswap_and_rotate_rev(first, second, third))
 	{
 		sa(A);
 		rra(A);
 	}
-
-	/* 3 1 2 */
-	else if (F->value > S->value && S->value < T->value && F->value > T->value)
+	else if (rotate(first, second, third))
 		ra(A);
-
-	/* 1 3 2 */
-	else if (F->value < S->value && S->value > T->value && F->value < T->value)
+	else if (swap_and_rotate(first, second, third))
 	{
 		sa(A);
 		ra(A);
 	}
-
-	/* 2 3 1 */
-	else if (F->value < S->value && S->value > T->value && F->value > T->value)
+	else if (reverse_rotate(first, second, third))
 		rra(A);
 }

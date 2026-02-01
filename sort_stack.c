@@ -2,9 +2,6 @@
 
 void	sort_stack(t_stack *A, t_stack *B)
 {
-	
-	(void)B; /* unused for now */
-
 	if (!A || A->size < 2)
 		return ;
 	if (is_sorted(A))

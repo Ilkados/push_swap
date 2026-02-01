@@ -14,7 +14,7 @@ void	rotate_both(t_stack *A, t_stack *B, int *ca, int *cb)
 		(*cb)++;
 	}
 }
- void	rotate_a(t_stack *A, int ca)
+void	bring_node_to_top_a(t_stack *A, int ca)
 {
 	while (ca > 0)
 	{
@@ -28,7 +28,7 @@ void	rotate_both(t_stack *A, t_stack *B, int *ca, int *cb)
 	}
 }
 
- void	rotate_b(t_stack *B, int cb)
+void	bring_node_to_top_b(t_stack *B, int cb)
 {
 	while (cb > 0)
 	{
@@ -57,33 +57,24 @@ void final_rotate_min_to_top(t_stack *A)
 {
 	t_node *min;
 
-    int p =0;
+    int p = 0;
 	if (!A || A->size < 2)
 		return;
-
 	set_positions(A);
 	min = find_index0(A);
 	if (!min)
 		return;
-
-         p=min->pos;
-	if (p<= A->size / 2)
+    p = min->pos;
+	if (p <= A->size / 2)
 	{
-       
-		while (p > 0)
-		{
+		while (p-- > 0)
 			ra(A);
-			p--;
-		}
 	}
 	else
 	{
-        p=(A->size - min->pos);
-		while (p > 0)
-		{
+        p = (A->size - min->pos);
+		while (p-- > 0)
 			rra(A);
-            p--;
-		}
 	}
 }
 
@@ -99,6 +90,6 @@ void	move_best_to_top(t_stack *A, t_stack *B, t_node *best)
 	cb = best->cost_b;
 
 	rotate_both(A, B, &ca, &cb);
-	rotate_a(A, ca);
-	rotate_b(B, cb);
+	bring_node_to_top_a(A, ca);
+	bring_node_to_top_b(B, cb);
 }

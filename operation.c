@@ -74,8 +74,7 @@ int     push_stack(t_stack *from, t_stack *to)  // pa/pb base
     to->Top=move;
     to->size++;
     return 1;
-} 
-
+}
 
 int rotate_stack(t_stack *s)
 {
@@ -103,7 +102,6 @@ int rotate_stack(t_stack *s)
     First->next=NULL;
 
     s->Bottom=First;
-
     return 1;
 }
 
