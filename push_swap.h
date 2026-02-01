@@ -46,6 +46,16 @@ typedef struct s_stack
  void	free_stack(t_stack *s);
 
 /* =========================
+ split_utils.
+   ========================= */
+int	white_space(char c);
+int	skip_spaces(char *s, int i);
+int	word_end(char *s, int i);
+int	count_words(const char *s);
+char	*substr_range(const char *s, int start, int end);
+char	**split(char *s);
+
+/* =========================
  parsing 
    ========================= */
 char **tokenize_argv(int argc,char **argv );

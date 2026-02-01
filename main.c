@@ -40,11 +40,11 @@ int main(int argc, char **argv)
    t_stack A;
    t_stack B;
 
-A.Top = NULL; A.Bottom = NULL; A.size = 0;
-B.Top = NULL; B.Bottom = NULL; B.size = 0;
+   A.Top = NULL; A.Bottom = NULL; A.size = 0;
+   B.Top = NULL; B.Bottom = NULL; B.size = 0;
 
     init_stack_a(&A, arr, size);
-     free(arr);
+    free(arr);
 	sort_stack(&A, &B);
 
 
