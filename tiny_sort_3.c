@@ -25,7 +25,7 @@ void	tiny_sort_3(t_stack *A)
 		return ;
 	else if (swap(first, second, third))
 		sa(A);
-	else if (fswap_and_rotate_rev(first, second, third))
+	else if (swap_and_rotate_rev(first, second, third))
 	{
 		sa(A);
 		rra(A);
