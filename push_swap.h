@@ -169,6 +169,17 @@ void    final_rotate_min_to_top(t_stack *A);
   Turk logic.
    ========================= 
 */
+void	set_costs(t_stack *a, t_stack *b);
+void	set_targets(t_stack *a, t_stack *b);
+t_node	*find_cheapest(t_stack *b);
+
+
+
+
+/* =========================
+  Turk logic.
+   ========================= 
+*/
 void    tiny_sort_3(t_stack *A);
 void    Turk_sort(t_stack *A, t_stack *B);
 void	sort_stack(t_stack *A, t_stack *B);

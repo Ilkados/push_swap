@@ -1,54 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/01 19:10:00 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/01 19:10:00 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include"push_swap.h"
+#include "push_swap.h"
 
-int main(int argc, char **argv)
+void	run_push_swap(t_stack *a, t_stack *b, int *arr, int size)
 {
+	a->Top = NULL;
+	a->Bottom = NULL;
+	a->size = 0;
+	b->Top = NULL;
+	b->Bottom = NULL;
+	b->size = 0;
+	init_stack_a(a, arr, size);
+	free(arr);
+	if (is_sorted(a))
+	{
+		free_stack(a);
+		return ;
+	}
+	sort_stack(a, b);
+	free_stack(a);
+}
 
-    // parting of handle parsing : 
-    
+int	main(int argc, char **argv)
+{
+	int		size;
+	char	**tokens;
+	int		*arr;
+	t_stack	a;
+	t_stack	b;
 
-    int size;
-    char **tokens= tokenize_argv(argc,argv);
-   
-    if(!tokens)
-    {
-        return (error(),1);
-    }
-
-    if (argc > 1 && tokens[0] == NULL)
-    {
-        free_tokens(tokens);
-        return (error(), 1);
-    }
-    int *arr=  validate_and_convert( tokens, &size);
-
-    if(arr==NULL)
-    {
-        error();
-        free_tokens(tokens);
-        free(arr);
-        return 1;
-    }
-
- 
- free_tokens(tokens);
-    
-
-    // building Stack A;
-
-
-   t_stack A;
-   t_stack B;
-
-   A.Top = NULL; A.Bottom = NULL; A.size = 0;
-   B.Top = NULL; B.Bottom = NULL; B.size = 0;
-
-    init_stack_a(&A, arr, size);
-    free(arr);
-	sort_stack(&A, &B);
-
-
- free_stack(&A);
- free_stack(&B);
-    return 0;
-}   
+	if (argc < 2)
+		return (0);
+	tokens = tokenize_argv(argc, argv);
+	if (!tokens || tokens[0] == NULL)
+	{
+		free_tokens(tokens);
+		error();
+		return (1);
+	}
+	arr = validate_and_convert(tokens, &size);
+	free_tokens(tokens);
+	if (!arr)
+	{
+		error();
+		return (1);
+	}
+	run_push_swap(&a, &b, arr, size);
+	return (0);
+}

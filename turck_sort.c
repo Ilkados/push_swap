@@ -1,166 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   turk_sort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 10:20:00 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/02 10:20:00 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"push_swap.h"
-#include<limits.h>// for INT_MAX
-t_node *min_index(t_stack *A)
+
+void	Turk_sort(t_stack *a, t_stack *b)
 {
-    t_node *cur;
-    t_node *min;
-
-    if(!A || !A->Top)
-    {
-        return NULL;
-    }
-
-    cur=A->Top;
-    min = cur;
-
-    while (cur)
-    {
-        if(cur->index < min->index)
-            min = cur;
-    
-     cur= cur->next;
-        /* code */
-    }
-
-    return min;
-    
-}
-
-void    set_targets(t_stack *A, t_stack *B)
-{
-    t_node *a;
-    t_node *b;
-    t_node *minA;
-    t_node *best;
-    int    best_index;
-
-    if(!A || !B || !A->Top)
-        return ;
-    minA = min_index(A);
-    b=B->Top;
-    while (b)
-    {
-        best = NULL;
-        best_index = INT_MAX;  
-        a = A->Top;
-        while (a)
-        {
-            if (a->index > b->index && a->index < best_index)
-            {
-                best_index = a->index;
-                best = a;
-            }
-            a = a->next ;
-        }
-        if (best)
-            b->target= best;
-        else
-            b->target= minA;
-        b = b->next;
-    }
-}
-static int calc_cost(int pos, int size)
-{
-    if(size<=1)
-    {
-        return 0;
-    }
-     
-
-     if(pos <=size/2)
-    {
-        return pos;
-    }
-      
-
- return  (-(size-pos));
-}
-void set_costs(t_stack *A, t_stack *B)
-{
-
-    t_node *b;
-
-    if(!A || !B)
-        return ;
-
-    b=B->Top;
-
-    while(b)
-    {
-        b->cost_b =calc_cost(b->pos,B->size);
-
-        if(b->target)
-          b->cost_a=calc_cost(b->target->pos,A->size);
-        else
-         b->cost_a=0;
-    
-      b=b->next;
-    }
-
-}
-
-
-static int	ft_abs(int x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-
-t_node	*find_cheapest(t_stack *B)
-{
-	t_node	*cur;
 	t_node	*best;
-	int		best_score;
-	int		score;
 
-	if (!B || !B->Top)
-		return (NULL);
-
-	cur = B->Top;
-	best = cur;
-	best_score = ft_abs(cur->cost_a) + ft_abs(cur->cost_b);
-
-	cur = cur->next;
-	while (cur)
+	indexing_stack(a);
+	while (a->size > 3)
+		pb(a, b);
+	tiny_sort_3(a);
+	while (b->size)
 	{
-		score = ft_abs(cur->cost_a) + ft_abs(cur->cost_b);
-		if (score < best_score)
-		{
-			best = cur;
-			best_score = score;
-		}
-		cur = cur->next;
+		set_positions(a);
+		set_positions(b);
+		set_targets(a, b);
+		set_costs(a, b);
+		best = find_cheapest(b);
+		move_best_to_top(a, b, best);
+		pa(b, a);
 	}
-	return (best);
-}
-
-
-
-void Turk_sort(t_stack *A , t_stack *B)
-{
-    indexing_stack(A);
-
-    //push from A to b has only 3 nodes
-    while(A->size>3)
-    {
-        pb(A,B);
-    }
-    tiny_sort_3(A);
-    //set_positions(A);
-
-    while(B->size)
-    {
-      set_positions(A);
-      set_positions(B);
-      set_targets(A,B);
-      set_costs(A,B);
-
-      t_node  *Best = find_cheapest(B);
-      move_best_to_top(A,B,Best);
-      pa(B,A);
-  
-    }
-    final_rotate_min_to_top(A);
-   
+	final_rotate_min_to_top(a);
 }
