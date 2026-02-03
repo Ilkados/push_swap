@@ -15,6 +15,6 @@ void	sort_stack(t_stack *A, t_stack *B)
 		tiny_sort_3(A);
 	else
 	{
-		Turk_sort(A, B);
+		turk_sort(A, B);
 	}
 }

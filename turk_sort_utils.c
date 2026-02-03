@@ -19,38 +19,37 @@ t_node	*min_index(t_stack *a)
 	return (min);
 }
 
-void	set_targets(t_stack *a, t_stack *b)
+t_node	*find_target_in_a(t_stack *A, t_node *b)
 {
-	t_node	*cur_a;
-	t_node	*cur_b;
-	t_node	*min_a;
+	t_node	*cur;
 	t_node	*best;
-	int		best_index;
+	t_node	*min;
 
-	if (!a || !b || !a->Top)
-		return ;
-	min_a = min_index(a);
-	cur_b = b->Top;
-	while (cur_b)
+	best = NULL;
+	min = min_index(A);
+	cur = A->Top;
+	while (cur)
 	{
-		best = NULL;
-		best_index = INT_MAX;
-		cur_a = a->Top;
-		while (cur_a)
-		{
-			if (cur_a->index > cur_b->index
-				&& cur_a->index < best_index)
-			{
-				best_index = cur_a->index;
-				best = cur_a;
-			}
-			cur_a = cur_a->next;
-		}
-		if (best)
-			cur_b->target = best;
-		else
-			cur_b->target = min_a;
-		cur_b = cur_b->next;
+		if (cur->index > b->index
+			&& (!best || cur->index < best->index))
+			best = cur;
+		cur = cur->next;
+	}
+	if (best)
+		return (best);
+	return (min);
+}
+void	set_targets(t_stack *A, t_stack *B)
+{
+	t_node	*b;
+
+	if (!A || !B)
+		return ;
+	b = B->Top;
+	while (b)
+	{
+		b->target = find_target_in_a(A, b);
+		b = b->next;
 	}
 }
 
@@ -81,35 +80,11 @@ void	set_costs(t_stack *a, t_stack *b)
 	}
 }
 
-static int	ft_abs(int x)
+int	ft_abs(int x)
 {
 	if (x < 0)
 		return (-x);
 	return (x);
 }
 
-t_node	*find_cheapest(t_stack *b)
-{
-	t_node	*cur;
-	t_node	*best;
-	int		best_score;
-	int		score;
 
-	if (!b || !b->Top)
-		return (NULL);
-	cur = b->Top;
-	best = cur;
-	best_score = ft_abs(cur->cost_a) + ft_abs(cur->cost_b);
-	cur = cur->next;
-	while (cur)
-	{
-		score = ft_abs(cur->cost_a) + ft_abs(cur->cost_b);
-		if (score < best_score)
-		{
-			best = cur;
-			best_score = score;
-		}
-		cur = cur->next;
-	}
-	return (best);
-}
