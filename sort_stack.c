@@ -1,4 +1,4 @@
-#include"push_swap.h"
+#include "push_swap.h"
 
 void	sort_stack(t_stack *A, t_stack *B)
 {
@@ -6,7 +6,6 @@ void	sort_stack(t_stack *A, t_stack *B)
 		return ;
 	if (is_sorted(A))
 		return ;
-
 	if (A->size == 2)
 	{
 		if (A->Top->value > A->Top->next->value)
@@ -16,6 +15,6 @@ void	sort_stack(t_stack *A, t_stack *B)
 		tiny_sort_3(A);
 	else
 	{
-		Turk_sort(A,B);
+		Turk_sort(A, B);
 	}
 }

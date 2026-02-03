@@ -12,19 +12,19 @@ int main(int argc, char **argv)
    
     if(!tokens)
     {
-        return (Error(),1);
+        return (error(),1);
     }
 
     if (argc > 1 && tokens[0] == NULL)
     {
         free_tokens(tokens);
-        return (Error(), 1);
+        return (error(), 1);
     }
     int *arr=  validate_and_convert( tokens, &size);
 
     if(arr==NULL)
     {
-        Error();
+        error();
         free_tokens(tokens);
         free(arr);
         return 1;

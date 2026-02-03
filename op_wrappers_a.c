@@ -14,7 +14,7 @@
 
 void	sa(t_stack *a)
 {
-	swap_stack(a);
+	swap_nodes(a);
 	write(1, "sa\n", 3);
 }
 
@@ -32,6 +32,6 @@ void	rra(t_stack *a)
 
 void	pa(t_stack *b, t_stack *a)
 {
-	push_stack(b, a);
+	push_node_to_stack(b, a);
 	write(1, "pa\n", 3);
 }

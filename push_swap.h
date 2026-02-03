@@ -36,7 +36,7 @@ typedef struct s_stack
 /* =========================
  Error.
    ========================= */
-   void Error();
+   void error();
 
 
 /* =========================
@@ -85,8 +85,8 @@ int init_stack_a(t_stack *stack, int *arr, int size);
    Core operations (no printing)
    ========================= 
 */
-int     swap_stack(t_stack *s);                  
-int     push_stack(t_stack *from, t_stack *to);  
+int     swap_nodes(t_stack *s);                  
+int     push_node_to_stack(t_stack *from, t_stack *to);  
 int     rotate_stack(t_stack *s);                
 int     rev_rotate_stack(t_stack *s);
 
@@ -94,11 +94,11 @@ int     rev_rotate_stack(t_stack *s);
    Validate operations
    ========================= 
 */
-int swap(t_node *fir, t_node *sec, t_node *thir);
-int swap_and_rotate_rev(t_node *fir, t_node *sec, t_node *thir);
-int rotate(t_node *fir, t_node *sec, t_node *thir);
-int swap_and_rotate(t_node *fir, t_node *sec, t_node *thir);
-int reverse_rotate(t_node *fir, t_node *sec, t_node *thir);
+int condition_for_sa(t_node *fir, t_node *sec, t_node *thir);
+int condition_for_sa_and_rra(t_node *fir, t_node *sec, t_node *thir);
+int condition_for_ra(t_node *fir, t_node *sec, t_node *thir);
+int condition_for_sa_and_ra(t_node *fir, t_node *sec, t_node *thir);
+int condition_for_rra(t_node *fir, t_node *sec, t_node *thir);
 
 
 
@@ -159,7 +159,9 @@ int is_sorted(t_stack *A);
   utils 
    ========================= 
 */
-
+void	rotate_both(t_stack *A, t_stack *B, int *ca, int *cb);
+void	bring_node_to_top_a(t_stack *A, int ca);
+void	bring_node_to_top_b(t_stack *B, int cb);
 void    move_best_to_top(t_stack *A, t_stack *B, t_node *best);
 void    final_rotate_min_to_top(t_stack *A);
 

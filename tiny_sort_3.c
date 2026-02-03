@@ -23,20 +23,20 @@ void	tiny_sort_3(t_stack *A)
 	third = A->Bottom;
 	if (first->value < second->value && second->value < third->value)
 		return ;
-	else if (swap(first, second, third))
+	else if (condition_for_sa(first, second, third))
 		sa(A);
-	else if (swap_and_rotate_rev(first, second, third))
+	else if (condition_for_sa_and_rra(first, second, third))
 	{
 		sa(A);
 		rra(A);
 	}
-	else if (rotate(first, second, third))
+	else if (condition_for_ra(first, second, third))
 		ra(A);
-	else if (swap_and_rotate(first, second, third))
+	else if (condition_for_sa_and_ra(first, second, third))
 	{
 		sa(A);
 		ra(A);
 	}
-	else if (reverse_rotate(first, second, third))
+	else if (condition_for_rra(first, second, third))
 		rra(A);
 }
