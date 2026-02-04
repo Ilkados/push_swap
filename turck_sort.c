@@ -9,7 +9,27 @@
 /*   Updated: 2026/02/02 10:20:00 by moboulir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   turk_sort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 10:20:00 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/02 10:20:00 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+#include <limits.h>
+
+int	ft_abs(int x)
+{
+	if (x < 0)
+		return (-x);
+	return (x);
+}
 
 t_node	*find_cheapest(t_stack *b)
 {
@@ -18,9 +38,9 @@ t_node	*find_cheapest(t_stack *b)
 	int		best_score;
 	int		score;
 
-	if (!b || !b->Top)
+	if (!b || !b->top)
 		return (NULL);
-	cur = b->Top;
+	cur = b->top;
 	best = cur;
 	best_score = ft_abs(cur->cost_a) + ft_abs(cur->cost_b);
 	cur = cur->next;

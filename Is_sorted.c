@@ -18,7 +18,7 @@ int	is_sorted(t_stack *A)
 
 	if (!A || A->size < 2)
 		return (1);
-	cur = A->Top;
+	cur = A->top;
 	while (cur != NULL && cur->next)
 	{
 		if (cur->value > cur->next->value)

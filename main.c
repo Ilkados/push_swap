@@ -14,11 +14,11 @@
 
 void	run_push_swap(t_stack *a, t_stack *b, int *arr, int size)
 {
-	a->Top = NULL;
-	a->Bottom = NULL;
+	a->top = NULL;
+	a->bottom = NULL;
 	a->size = 0;
-	b->Top = NULL;
-	b->Bottom = NULL;
+	b->top = NULL;
+	b->bottom = NULL;
 	b->size = 0;
 	init_stack_a(a, arr, size);
 	free(arr);

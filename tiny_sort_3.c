@@ -18,9 +18,9 @@ void	tiny_sort_3(t_stack *A)
 	t_node	*second;
 	t_node	*third;
 
-	first = A->Top;
+	first = A->top;
 	second = first->next;
-	third = A->Bottom;
+	third = A->bottom;
 	if (first->value < second->value && second->value < third->value)
 		return ;
 	else if (condition_for_sa(first, second, third))

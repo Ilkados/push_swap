@@ -9,9 +9,10 @@
 /*   Updated: 2026/02/01 16:35:49 by moboulir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"push_swap.h"
 
-int	valid_str(const char *token)
+#include "push_swap.h"
+
+static int	valid_str(const char *token)
 {
 	int	i;
 
@@ -31,7 +32,7 @@ int	valid_str(const char *token)
 	return (1);
 }
 
-int	ft_atoi_safe(const char *token, int *out)
+static int	ft_atoi_safe(const char *token, int *out)
 {
 	int		i;
 	int		sign;
@@ -60,7 +61,7 @@ int	ft_atoi_safe(const char *token, int *out)
 	return (1);
 }
 
-int	count_tokens(char **token)
+static int	count_tokens(char **token)
 {
 	int	i;
 
@@ -70,7 +71,7 @@ int	count_tokens(char **token)
 	return (i);
 }
 
-int	duplicate_esist(int *arr, int size)
+static int	duplicate_exist(int *arr, int size)
 {
 	int	i;
 	int	k;
@@ -90,29 +91,31 @@ int	duplicate_esist(int *arr, int size)
 	return (0);
 }
 
-int	*valid_tokens(char **tokens, int *Size)
+int	*valid_tokens(char **tokens, int *size)
 {
-	int	size;
-	int	*arr;
-	int	i;
-	int	value;
+	int		count;
+	int		*arr;
+	int		i;
+	int		value;
 
-	size = count_tokens(tokens);
-	if (Size != NULL)
-		*Size = size;
-	arr = (int *)malloc(sizeof(int) * size);
-	i = 0;
+	count = count_tokens(tokens);
+	if (size)
+		*size = count;
+	arr = malloc(sizeof(int) * count);
 	if (!arr)
 		return (NULL);
-	while (i < size)
+	i = -1;
+	while (++i < count)
 	{
 		if (!valid_str(tokens[i]) || !ft_atoi_safe(tokens[i], &value))
 		{
-			free(arr);
-			return (NULL);
+			return (free(arr), NULL);
 		}
 		arr[i] = value;
-		i++;
+	}
+	if (duplicate_exist(arr, count))
+	{
+		return (free(arr), NULL);
 	}
 	return (arr);
 }

@@ -60,7 +60,7 @@ static t_node	*find_index0(t_stack *A)
 {
 	t_node	*cur;
 
-	cur = A->Top;
+	cur = A->top;
 	while (cur)
 	{
 		if (cur->index == 0)

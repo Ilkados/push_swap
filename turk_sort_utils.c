@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   turk_targets.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/02 12:00:00 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/02 12:00:00 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <limits.h>
 
 t_node	*min_index(t_stack *a)
 {
 	t_node	*cur;
 	t_node	*min;
 
-	if (!a || !a->Top)
+	if (!a || !a->top)
 		return (NULL);
-	cur = a->Top;
+	cur = a->top;
 	min = cur;
 	while (cur)
 	{
@@ -19,15 +30,15 @@ t_node	*min_index(t_stack *a)
 	return (min);
 }
 
-t_node	*find_target_in_a(t_stack *A, t_node *b)
+t_node	*find_target_in_a(t_stack *a, t_node *b)
 {
 	t_node	*cur;
 	t_node	*best;
 	t_node	*min;
 
 	best = NULL;
-	min = min_index(A);
-	cur = A->Top;
+	min = min_index(a);
+	cur = a->top;
 	while (cur)
 	{
 		if (cur->index > b->index
@@ -39,17 +50,18 @@ t_node	*find_target_in_a(t_stack *A, t_node *b)
 		return (best);
 	return (min);
 }
-void	set_targets(t_stack *A, t_stack *B)
-{
-	t_node	*b;
 
-	if (!A || !B)
+void	set_targets(t_stack *a, t_stack *b)
+{
+	t_node	*cur;
+
+	if (!a || !b)
 		return ;
-	b = B->Top;
-	while (b)
+	cur = b->top;
+	while (cur)
 	{
-		b->target = find_target_in_a(A, b);
-		b = b->next;
+		cur->target = find_target_in_a(a, cur);
+		cur = cur->next;
 	}
 }
 
@@ -68,7 +80,7 @@ void	set_costs(t_stack *a, t_stack *b)
 
 	if (!a || !b)
 		return ;
-	cur = b->Top;
+	cur = b->top;
 	while (cur)
 	{
 		cur->cost_b = calc_cost(cur->pos, b->size);
@@ -79,12 +91,3 @@ void	set_costs(t_stack *a, t_stack *b)
 		cur = cur->next;
 	}
 }
-
-int	ft_abs(int x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-
-

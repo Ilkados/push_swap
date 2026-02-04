@@ -17,7 +17,7 @@ int	*validate_and_convert(char **tokens, int *size)
 	int	*arr;
 
 	arr = valid_tokens(tokens, size);
-	if (arr == NULL || duplicate_esist(arr, *size) == 1)
+	if (arr == NULL)
 	{
 		free(arr);
 		return (NULL);

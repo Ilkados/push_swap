@@ -1,188 +1,138 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moboulir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/01 10:00:00 by moboulir          #+#    #+#             */
+/*   Updated: 2026/02/01 10:00:00 by moboulir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <unistd.h>
-#include<stdio.h>
 
-
-/* =========================
-   Data structures
-   ========================= */
+/*
+** =========================
+** Data structures
+** =========================
+*/
 
 typedef struct s_node
 {
-    int             value;
-
-    int             index;
-    int             pos;
-    int             cost_a;
-    int             cost_b;
-    struct s_node   *target;
-
-    struct s_node   *next;
-    struct s_node   *prev;
-}   t_node;
+	int				value;
+	int				index;
+	int				pos;
+	int				cost_a;
+	int				cost_b;
+	struct s_node	*target;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 typedef struct s_stack
 {
-    t_node  *Top;
-    t_node  *Bottom;
-    int     size;
-}   t_stack;
+	t_node	*top;
+	t_node	*bottom;
+	int		size;
+}	t_stack;
 
+/*
+** =========================
+** Error / Free
+** =========================
+*/
 
-/* =========================
- Error.
-   ========================= */
-   void error();
+void	error(void);
+void	free_tokens(char **tokens);
+void	free_stack(t_stack *s);
 
+/*
+** =========================
+** Split / Parsing
+** =========================
+*/
 
-/* =========================
- free
-   ========================= */
- void free_tokens(char **tokens);
- void	free_stack(t_stack *s);
-
-/* =========================
- split_utils.
-   ========================= */
-int	white_space(char c);
-int	skip_spaces(char *s, int i);
-int	word_end(char *s, int i);
-int	count_words(const char *s);
+int		white_space(char c);
+int		count_words(const char *s);
 char	*substr_range(const char *s, int start, int end);
 char	**split(char *s);
 
-/* =========================
- parsing 
-   ========================= */
-int	duplicate_esist(int *arr, int size);
-int	*valid_tokens(char **tokens, int *Size);
-char **tokenize_argv(int argc,char **argv );
+char	**tokenize_argv(int argc, char **argv);
+int		*valid_tokens(char **tokens, int *size);
+int		validate_and_convert(char **tokens, int *size);
 
-
-/* =========================
-  Read input:
-   ========================= */
-int * validate_and_convert( char **tokens,int *size);
-
-
-
-
-
-
-
-
-/* =========================
-  Build the stack
-   ========================= */
-int init_stack_a(t_stack *stack, int *arr, int size);
-
-
-/* =========================
-   Core operations (no printing)
-   ========================= 
+/*
+** =========================
+** Stack init / utils
+** =========================
 */
-int     swap_nodes(t_stack *s);                  
-int     push_node_to_stack(t_stack *from, t_stack *to);  
-int     rotate_stack(t_stack *s);                
-int     rev_rotate_stack(t_stack *s);
 
-/* =========================
-   Validate operations
-   ========================= 
+int		init_stack_a(t_stack *stack, int *arr, int size);
+int		is_sorted(t_stack *a);
+void	indexing_stack(t_stack *a);
+void	set_positions(t_stack *a);
+
+/*
+** =========================
+** Core operations
+** =========================
 */
-int condition_for_sa(t_node *fir, t_node *sec, t_node *thir);
-int condition_for_sa_and_rra(t_node *fir, t_node *sec, t_node *thir);
-int condition_for_ra(t_node *fir, t_node *sec, t_node *thir);
-int condition_for_sa_and_ra(t_node *fir, t_node *sec, t_node *thir);
-int condition_for_rra(t_node *fir, t_node *sec, t_node *thir);
 
+int		swap_nodes(t_stack *s);
+int		push_node_to_stack(t_stack *from, t_stack *to);
+int		rotate_stack(t_stack *s);
+int		rev_rotate_stack(t_stack *s);
 
-
-/* =========================
-   Operation Wrapper for A
-   ========================= 
+/*
+** =========================
+** Wrappers (print ops)
+** =========================
 */
+
 void	sa(t_stack *a);
-void	ra(t_stack *a);
-void	rra(t_stack *a);
-void	pa(t_stack *b, t_stack *a);
-
-
-/* =========================
-   Operation Wrapper for B
-   ========================= 
-*/
 void	sb(t_stack *b);
-void	rb(t_stack *b);
-void	rrb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
+
+void	pa(t_stack *b, t_stack *a);
 void	pb(t_stack *a, t_stack *b);
 
-/* =========================
-   Operation Wrapper both
-   ========================= 
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
+
+/*
+** =========================
+** Sorting logic
+** =========================
 */
- void rr(t_stack *A, t_stack *B);
- void rrr(t_stack *A, t_stack *B);
 
+void	tiny_sort_3(t_stack *a);
+void	sort_stack(t_stack *a, t_stack *b);
+void	turk_sort(t_stack *a, t_stack *b);
 
- void rotate_both(t_stack *A, t_stack *B, int *ca, int *cb);
- void	rotate_a(t_stack *A, int ca);
- void	rotate_b(t_stack *B, int cb);
-
-/* =========================
-  indexing stack
-   ========================= 
+/*
+** =========================
+** Turk utils
+** =========================
 */
-void indexing_stack(t_stack *A);
 
-
-/* =========================
-   set_positions.
-   ========================= 
-*/
-void set_positions(t_stack *A);
-
-
-/* =========================
-  check is stack is sorted.
-   ========================= 
-*/
-int is_sorted(t_stack *A);
-
-
-
-/* =========================
-  utils 
-   ========================= 
-*/
-void	rotate_both(t_stack *A, t_stack *B, int *ca, int *cb);
-void	bring_node_to_top_a(t_stack *A, int ca);
-void	bring_node_to_top_b(t_stack *B, int cb);
-void    move_best_to_top(t_stack *A, t_stack *B, t_node *best);
-void    final_rotate_min_to_top(t_stack *A);
-
-/* =========================
-  Turk logic.
-   ========================= 
-*/
-void	set_costs(t_stack *a, t_stack *b);
 void	set_targets(t_stack *a, t_stack *b);
-int	ft_abs(int x);
+void	set_costs(t_stack *a, t_stack *b);
+int		ft_abs(int x);
 
-
-
-
-/* =========================
-  Turk logic.
-   ========================= 
-*/
-void    tiny_sort_3(t_stack *A);
-void    turk_sort(t_stack *A, t_stack *B);
-void	sort_stack(t_stack *A, t_stack *B);
-
+void	rotate_both(t_stack *a, t_stack *b, int *ca, int *cb);
+void	bring_node_to_top_a(t_stack *a, int ca);
+void	bring_node_to_top_b(t_stack *b, int cb);
+void	move_best_to_top(t_stack *a, t_stack *b, t_node *best);
+void	final_rotate_min_to_top(t_stack *a);
 
 #endif

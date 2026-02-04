@@ -19,15 +19,15 @@ void	free_stack(t_stack *stack)
 
 	if (!stack)
 		return ;
-	cur = stack->Top;
+	cur = stack->top;
 	while (cur)
 	{
 		next = cur->next;
 		free(cur);
 		cur = next;
 	}
-	stack->Top = NULL;
-	stack->Bottom = NULL;
+	stack->top = NULL;
+	stack->bottom = NULL;
 	stack->size = 0;
 }
 
@@ -48,22 +48,22 @@ void	append_bottom(t_stack *stack, t_node *node)
 {
 	t_node	*old_botttom;
 
-	if (!stack->Top)
+	if (!stack->top)
 	{
 		stack->size = 0;
-		stack->Bottom = node;
-		stack->Top = node;
+		stack->bottom = node;
+		stack->top = node;
 		stack->size++;
 		node->next = NULL;
 		node->prev = NULL;
 	}
 	else
 	{
-		old_botttom = stack->Bottom;
+		old_botttom = stack->bottom;
 		node->prev = old_botttom;
 		old_botttom->next = node;
 		node->next = NULL;
-		stack->Bottom = node;
+		stack->bottom = node;
 		stack->size++;
 	}
 }

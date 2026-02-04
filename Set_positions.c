@@ -18,7 +18,7 @@ void	set_positions(t_stack *A)
 	t_node	*cur;
 
 	i = 0;
-	cur = A->Top;
+	cur = A->top;
 	while (cur)
 	{
 		cur->pos = i;

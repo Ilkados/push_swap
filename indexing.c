@@ -56,7 +56,7 @@ void	assign_indexes(t_stack *A, int *sorted_arr, int size)
 {
 	t_node	*cur;
 
-	cur = A->Top;
+	cur = A->top;
 	while (cur)
 	{
 		cur->index = find_index(cur->value, sorted_arr, size);
@@ -78,7 +78,7 @@ void	indexing_stack(t_stack *A)
 	if (!arr)
 		return ;
 	i = 0;
-	cur = A->Top;
+	cur = A->top;
 	while (cur != NULL)
 	{
 		arr[i] = cur->value;
